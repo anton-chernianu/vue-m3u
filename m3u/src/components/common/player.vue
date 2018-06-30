@@ -1,8 +1,9 @@
 <template>
     <div id="player">
-        <video ref="playerM" id="playerMMM" width=600 height=300 class="video-js vjs-default-skin" controls>
+        <!--https://webarmen.com/my/iptv/auto.nogrp.m3u-->
+        <video ref="playerM" id="playerMMM" width=800 height=400 class="video-js vjs-default-skin" controls>
             <source
-                    src="http://cdnworld.magictvbox.eu/Discovery_Showcase_HD/tracks-v2a1/index.m3u8?token=b04f6e1d3917019e1ca2559684a5aad5673f376e"
+                    src="http://b90788cf.suklakakl.site/iptv/APPBERG7BRTY6L/131/index.m3u8"
                     type="application/x-mpegURL">
         </video>
     </div>
