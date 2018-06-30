@@ -21,21 +21,26 @@
                 type : String,
             }
         },
+        data() {
+          return {
+              playerElem : null,
+          }
+        },
         watch: {
-            channel : function(val) {
-                let playerID = this.$refs.playerM;
-                let playerElem = videojs(playerID, {html5: {
-                    hls: {
-                        withCredentials: false
-                    },
-                }});
-                playerElem.src({type: 'application/x-mpegURL', src: this.channel});
-                playerElem.volume(1);
-                playerElem.play();
+            channel : function() {
+                this.playerElem.src({type: 'application/x-mpegURL', src: this.channel});
+                this.playerElem.play();
             }
         },
         mounted() {
-
+            this.playerElem = videojs(this.$refs.playerM, {html5: {
+                hls: {
+                    withCredentials: false
+                },
+            }});
+            this.playerElem.src({type: 'application/x-mpegURL', src: 'http://b90788cf.suklakakl.site/iptv/APPBERG7BRTY6L/702/index.m3u8'});
+            this.playerElem.volume(1);
+            this.playerElem.play();
         }
     }
 </script>

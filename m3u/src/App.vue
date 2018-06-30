@@ -1,13 +1,30 @@
 <template>
     <div id="app">
 
-        <player v-if="show" :channel="selectChannel"></player>
-        
-        <ul class="list">
-            <li  v-for="(channel, index) in tvChannel" class="list-item" @click.prevent="sendChannel(channel[2])" :key="index">
-                {{channel[1]}}
-            </li>
-        </ul>
+        <div class="container">
+
+            <div class="left">
+                <h1 class="title">{{titleChannel}}</h1>
+                <player :channel="selectChannel"></player>
+                <div class="button">
+                    <a  v-if="showButton" @click.prevent="prevChannel()" href="#">PREV</a>
+                    <a  v-if="showButton" @click.prevent="nextChannel()" href="#">NEXT</a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="vuebar-element" v-bar>
+                    <ul class="list">
+                        <li v-for="(channel, index) in tvChannel" class="list__item"
+                            :class="{active: index === activeIndex}"
+                            @click.prevent="sendChannel(index,channel[1],channel[2])"
+                            :key="index">
+                            {{channel[1]}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </template>
@@ -21,22 +38,36 @@
         components: {
             player
         },
-        data(){
-            return{
-                tvChannel : dataPlaylist,
+        data() {
+            return {
+                tvChannel: dataPlaylist,
+                showButton: false,
+                activeIndex: null,
+                titleChannel: '',
                 selectChannel: '',
-                show: false
             }
         },
         methods: {
-            sendChannel(data){
-                this.show = false;
-               this.selectChannel = data;
-               this.show = true;
+            sendChannel(index, title, link) {
+                this.activeIndex = index;
+                this.titleChannel = title;
+                this.selectChannel = link;
+                this.showButton = true;
+            },
+            prevChannel() {
+                let currentId = Number(this.activeIndex) - 1;
+                this.titleChannel = this.tvChannel[currentId][1];
+                this.selectChannel = this.tvChannel[currentId][2];
+                this.activeIndex = currentId;
+            },
+            nextChannel() {
+                let currentId = Number(this.activeIndex) + 1;
+                this.titleChannel = this.tvChannel[currentId][1];
+                this.selectChannel = this.tvChannel[currentId][2];
+                this.activeIndex = currentId;
             }
         },
         mounted() {
-            console.log(dataPlaylist);
         }
     }
 </script>
