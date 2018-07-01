@@ -1,7 +1,7 @@
 <template>
     <div id="player">
         <!--https://webarmen.com/my/iptv/auto.nogrp.m3u-->
-        <video ref="playerM" width=800 height=400 class="video-js vjs-default-skin" controls>
+        <video ref="playerM" width=960 height=540 class="video-js vjs-default-skin" controls>
             <!-- http://b90788cf.suklakakl.site/iptv/APPBERG7BRTY6L/541/index.m3u8 -->
             <source>
         </video>

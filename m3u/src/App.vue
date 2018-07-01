@@ -4,24 +4,24 @@
         <div class="container">
 
             <div class="left">
-                <h1 class="title">{{titleChannel}}</h1>
-                <player :channel="selectChannel"></player>
-                <div class="button">
-                    <a  v-if="showButton" @click.prevent="prevChannel()" href="#">PREV</a>
-                    <a  v-if="showButton" @click.prevent="nextChannel()" href="#">NEXT</a>
+                <div class="fixed">
+                    <h1 class="title">{{titleChannel}}</h1>
+                    <player :channel="selectChannel"></player>
+                    <div class="button">
+                        <a v-if="showButton" @click.prevent="prevChannel()" href="#">PREV</a>
+                        <a v-if="showButton" @click.prevent="nextChannel()" href="#">NEXT</a>
+                    </div>
                 </div>
             </div>
             <div class="right">
-                <div class="vuebar-element" v-bar>
-                    <ul class="list">
-                        <li v-for="(channel, index) in tvChannel" class="list__item"
-                            :class="{active: index === activeIndex}"
-                            @click.prevent="sendChannel(index,channel[1],channel[2])"
-                            :key="index">
-                            {{channel[1]}}
-                        </li>
-                    </ul>
-                </div>
+                <ul class="list">
+                    <li v-for="(channel, index) in tvChannel" class="list__item"
+                        :class="{active: index === activeIndex}"
+                        @click.prevent="sendChannel(index,channel[1],channel[2])"
+                        :key="index">
+                        {{channel[1]}}
+                    </li>
+                </ul>
             </div>
 
         </div>
